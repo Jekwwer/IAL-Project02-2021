@@ -461,4 +461,45 @@ void bst_leftmost_postorder(bst_node_t *tree, stack_bst_t *to_visit,
  * zásobníkov uzlov a bool hodnôt bez použitia vlastných pomocných funkcií.
  */
 void bst_postorder(bst_node_t *tree) {
+    // alokujeme a inicializujeme zásobník uzlu
+    stack_bst_t *node_stack = malloc(sizeof(stack_bst_t));
+    if (node_stack == NULL) {
+        return;
+    }
+
+    // alokujeme a inicializujeme zásobník bool hodnot
+    stack_bst_init(node_stack);
+    stack_bool_t *bool_stack = malloc(sizeof(stack_bool_t));
+    if (bool_stack == NULL) {
+        return;
+    }
+    stack_bool_init(bool_stack);
+
+    bool isFromLeft;
+
+    //jdeme co nejvíc doleva
+    bst_leftmost_postorder(tree, node_stack, bool_stack);
+
+    // dokud zásobník uzlu není prázdný
+    while (!stack_bst_empty(node_stack)) {
+        // koukáme na uzel z nej
+        tree = stack_bst_top(node_stack);
+        isFromLeft = stack_bool_top(bool_stack);
+        stack_bool_pop(bool_stack);
+        // jsme byly vlevo?
+        if (isFromLeft) {
+            // máme jít doprava
+            stack_bool_push(bool_stack, false);
+            bst_leftmost_postorder(tree->right, node_stack, bool_stack);
+        }
+        else {// už jsme byly vpravo
+            // odstaňujeme uzel ze zásobníku a vypisujeme ho
+            stack_bst_pop(node_stack);
+            bst_print_node(tree);
+        }
+    }
+
+    // uvolňujeme páměť pro zásobník
+    free(node_stack);
+    free(bool_stack);
 }
