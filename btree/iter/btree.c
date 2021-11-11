@@ -440,6 +440,16 @@ void bst_inorder(bst_node_t *tree) {
  */
 void bst_leftmost_postorder(bst_node_t *tree, stack_bst_t *to_visit,
                             stack_bool_t *first_visit) {
+
+    // dokud podstrom není prázdný
+    while (tree != NULL) {
+        // ukládáme uzel do zásobníku
+        stack_bst_push(to_visit, tree);
+        // ukládáme true, že jsme byli v uzlu poprvé
+        stack_bool_push(first_visit, true);
+        // jdeme doleva
+        tree = tree->left;
+    }
 }
 
 /*
