@@ -74,6 +74,63 @@ bool bst_search(bst_node_t *tree, char key, int *value) {
  * Funkciu implementujte iteratívne bez použitia vlastných pomocných funkcií.
  */
 void bst_insert(bst_node_t **tree, char key, int value) {
+
+    // ošetření NULL
+    if (tree == NULL) {
+        return;
+    }
+
+    // předchozí uzel stromu
+    bst_node_t *prevRootPtr = NULL;
+    // současný uzel stromu
+    bst_node_t *rootPtr = *tree;
+    // podmínka ukončení cyklu
+    bool isDone = false;
+
+    while (!isDone) {
+        // pokud součastný uzel není prázdný
+        if (rootPtr != NULL) {
+            prevRootPtr = rootPtr;
+            // pokud hledaný klíč je vlevo
+            if (key < rootPtr->key) {
+                rootPtr = rootPtr->left;
+            }
+            // pokud hledaný klíč je vpravo
+            else if (rootPtr->key < key) {
+                rootPtr = rootPtr->right;
+            }
+            // pokud se klíče rovnají
+            else {
+                rootPtr->value = value;
+                isDone = true;
+            }
+        }
+        else {// součastný uzel je prázdný/klíč nebyl nalezen
+            bst_node_t *newNode = malloc(sizeof(bst_node_t));
+            if (newNode == NULL) {
+                return;
+            }
+            // inicializace nového uzlu
+            newNode->key = key;
+            newNode->left = NULL;
+            newNode->right = NULL;
+            newNode->value = value;
+
+            // pokud strom je prázdný
+            if (prevRootPtr == rootPtr) {
+                *tree = newNode;
+            }
+            else {//strom není prázdný
+                if (key < prevRootPtr->key) {
+                    prevRootPtr->left = newNode;
+                }
+                else {
+                    prevRootPtr->right = newNode;
+                }
+            }
+            isDone = true;
+        }
+    }
 }
 
 /*
