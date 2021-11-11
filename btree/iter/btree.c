@@ -181,6 +181,92 @@ void bst_replace_by_rightmost(bst_node_t *target, bst_node_t **tree) {
  * použitia vlastných pomocných funkcií.
  */
 void bst_delete(bst_node_t **tree, char key) {
+
+    // ošetření NULL
+    if (tree == NULL) {
+        return;
+    }
+
+    // předchozí uzel stromu
+    bst_node_t *prevRootPtr = NULL;
+    // současný uzel stromu
+    bst_node_t *rootPtr = *tree;
+    // dočasná proměnná jen pro volání bst_search()
+    int tmp = 0;
+
+    // pokud uzel s takovým klíčem ve stromu není
+    if (!bst_search(rootPtr, key, &tmp)) {
+        return;
+    }
+    else {// klíč je ve stromu
+        // hledáme uzel s hledaným klíčem
+        while (rootPtr->key != key) {
+            prevRootPtr = rootPtr;
+            if (key < rootPtr->key) {
+                rootPtr = rootPtr->left;
+            }
+            else {
+                rootPtr = rootPtr->right;
+            }
+        }
+    }
+
+    // pokud uzel nemá potomky
+    if (rootPtr->right == NULL && rootPtr->left == NULL) {
+        // pokud je to jediný uzel ve stromu
+        if (prevRootPtr == NULL) {
+            *tree = NULL;
+        }
+        else {//není jediný uzel ve stromu
+            // pokud je levým potomkem otce
+            if (prevRootPtr->left == rootPtr) {
+                prevRootPtr->left = NULL;
+            }
+            else {// je pravým potomkem otce
+                prevRootPtr->right = NULL;
+            }
+        }
+    }
+    // pokud má pouze levého potomka
+    else if (rootPtr->left != NULL && rootPtr->right == NULL) {
+        // pokud rušíme kořen stromu
+        if (prevRootPtr == NULL) {
+            *tree = rootPtr->left;
+        }
+        else {
+            // pokud rušíme levého potomka
+            if (rootPtr == prevRootPtr->left) {
+                prevRootPtr->left = rootPtr->left;
+            }
+            else {// rušíme pravého potomka
+                prevRootPtr->right = rootPtr->left;
+            }
+        }
+    }
+    // pokud má pouze pravého potomka
+    else if (rootPtr->right != NULL && rootPtr->left == NULL) {
+        // pokud rušíme kořen stromu
+        if (prevRootPtr == NULL) {
+            *tree = rootPtr->right;
+        }
+        else {
+            // pokud rušíme levého potomka
+            if (rootPtr == prevRootPtr->left) {
+                prevRootPtr->left = rootPtr->right;
+            }
+            else {// rušíme pravého potomka
+                prevRootPtr->right = rootPtr->right;
+            }
+        }
+    }
+    else {// má oba potomky
+        bst_replace_by_rightmost(rootPtr, &(rootPtr->left));
+        // rušený uzel uvolní bst_replace_by_rigthmost()
+        return;
+    }
+
+    //uvolňujeme páměť
+    free(rootPtr);
 }
 
 /*
