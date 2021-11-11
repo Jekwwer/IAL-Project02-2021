@@ -37,7 +37,29 @@ void bst_init(bst_node_t **tree) {
  * Funkciu implementujte iteratívne bez použitia vlastných pomocných funkcií.
  */
 bool bst_search(bst_node_t *tree, char key, int *value) {
-    return false;
+    // podmínka nalezení uzlu
+    bool found = false;
+    // dočastný kořen stromu pro skakání doleva/doprava
+    bst_node_t *tmpRoot = tree;
+
+    // pokud nenalezeno a podstrom není prázdný
+    while (!found && tmpRoot != NULL) {
+
+        // pokud hledaný klíč je menší je vlevo
+        if (key < tmpRoot->key) {
+            tmpRoot = tmpRoot->left;
+        }
+        // pokud hledaný klíč je menší je vpravo
+        else if (tmpRoot->key < key) {
+            tmpRoot = tmpRoot->right;
+        }
+        // pokud se klíče rovnají
+        else {
+            found = true;
+            *value = tmpRoot->value;
+        }
+    }
+    return found;
 }
 
 /*
