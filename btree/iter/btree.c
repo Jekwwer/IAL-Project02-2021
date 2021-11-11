@@ -331,6 +331,15 @@ void bst_dispose(bst_node_t **tree) {
  * vlastných pomocných funkcií.
  */
 void bst_leftmost_preorder(bst_node_t *tree, stack_bst_t *to_visit) {
+    // dokud podstrom není prázdný
+    while (tree != NULL) {
+        // ukládáme kořen do zásobníku
+        stack_bst_push(to_visit, tree);
+        // vypisujeme hodnotu kořene
+        bst_print_node(tree);
+        // jdeme doleva
+        tree = tree->left;
+    }
 }
 
 /*
