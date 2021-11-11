@@ -147,6 +147,25 @@ void bst_insert(bst_node_t **tree, char key, int value) {
  * Funkciu implementujte iteratívne bez použitia vlastných pomocných funkcií.
  */
 void bst_replace_by_rightmost(bst_node_t *target, bst_node_t **tree) {
+
+    // ošetření NULL
+    if (tree == NULL) {
+        return;
+    }
+
+    // současný uzel stromu
+    bst_node_t *rootPtr = *tree;
+
+    // hledáme uzel, který je nejvíc vpravo
+    while (rootPtr->right != NULL) {
+        rootPtr = rootPtr->right;
+    }
+
+    // přepisujeme data
+    target->key = rootPtr->key;
+    target->value = rootPtr->value;
+    // odstraňujeme ten nejpravejší prvek
+    bst_delete(tree, rootPtr->key);
 }
 
 /*
