@@ -280,6 +280,45 @@ void bst_delete(bst_node_t **tree, char key) {
  * vlastných pomocných funkcií.
  */
 void bst_dispose(bst_node_t **tree) {
+
+    // ošetření NULL
+    if (tree == NULL) {
+        return;
+    }
+
+    // alokujeme a inicializujeme zásobník pro uzly
+    stack_bst_t *stack = malloc(sizeof(stack_bst_t));
+    stack_bst_init(stack);
+
+    // současný uzel stromu
+    bst_node_t *rootPtr = *tree;
+
+    // dokud kořen podstromu není prázdný nebo dokud zásobník není prázdný
+    while (rootPtr != NULL || !stack_bst_empty(stack)) {
+        // pokud kořen je prázdný
+        if (rootPtr == NULL) {
+            if (!stack_bst_empty(stack)) {
+                // dostáváme nový kořen ze zásobníku
+                rootPtr = stack_bst_top(stack);
+                stack_bst_pop(stack);
+            }
+        }
+        else {//kořen není prázdný
+            // pokud má pravého potomka, uložíme ho do zásobníku
+            if (rootPtr->right != NULL) {
+                stack_bst_push(stack, rootPtr->right);
+            }
+            // jdeme doleva a zároveň uvolňujeme kořen
+            bst_node_t *tmpPtr = rootPtr;
+            rootPtr = rootPtr->left;
+            free(tmpPtr);
+        }
+    }
+    // NULLujeme odkaz na kořen stromu
+    *tree = NULL;
+
+    // uvolňujeme páměť pro zásobník
+    free(stack);
 }
 
 /*
