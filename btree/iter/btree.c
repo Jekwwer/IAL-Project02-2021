@@ -351,6 +351,27 @@ void bst_leftmost_preorder(bst_node_t *tree, stack_bst_t *to_visit) {
  * zásobníku uzlov bez použitia vlastných pomocných funkcií.
  */
 void bst_preorder(bst_node_t *tree) {
+    // alokujeme a inicializujeme zásobník
+    stack_bst_t *stack = malloc(sizeof(stack_bst_t));
+    if (stack == NULL) {
+        return;
+    }
+    stack_bst_init(stack);
+
+    // jdeme co nejvíc doleva
+    bst_leftmost_preorder(tree, stack);
+
+    // dokud zásobník není prázdný
+    while (!stack_bst_empty(stack)) {
+        // bereme z nej uzel
+        bst_node_t *tmpRoot = stack_bst_top(stack);
+        stack_bst_pop(stack);
+        // kořen a levý potomek už jsou zpracované, jdeme doprava
+        bst_leftmost_preorder(tmpRoot->right, stack);
+    }
+
+    // uvolňujeme páměť pro zásobník
+    free(stack);
 }
 
 /*
