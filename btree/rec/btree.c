@@ -18,7 +18,10 @@
  * možné toto detegovať vo funkcii.
  */
 void bst_init(bst_node_t **tree) {
-    *tree = NULL;
+    // ošetření NULL
+    if (tree != NULL) {
+        *tree = NULL;
+    }
 }
 
 /*
@@ -64,6 +67,12 @@ bool bst_search(bst_node_t *tree, char key, int *value) {
  * Funkciu implementujte rekurzívne bez použitia vlastných pomocných funkcií.
  */
 void bst_insert(bst_node_t **tree, char key, int value) {
+
+    // ošetření NULL
+    if (tree == NULL) {
+        return;
+    }
+
     // současný kořen stromu
     bst_node_t *rootPtr = *tree;
 
@@ -114,6 +123,12 @@ void bst_insert(bst_node_t **tree, char key, int value) {
  * Funkciu implementujte rekurzívne bez použitia vlastných pomocných funkcií.
  */
 void bst_replace_by_rightmost(bst_node_t *target, bst_node_t **tree) {
+
+    // ošetření NULL
+    if (tree == NULL) {
+        return;
+    }
+
     // současný kořen stromu
     bst_node_t *rootPrt = *tree;
     // pokud je cesta vpravo, jdeme doprava
@@ -140,6 +155,12 @@ void bst_replace_by_rightmost(bst_node_t *target, bst_node_t **tree) {
  * použitia vlastných pomocných funkcií.
  */
 void bst_delete(bst_node_t **tree, char key) {
+
+    // ošetření NULL
+    if (tree == NULL) {
+        return;
+    }
+
     // současný kořen stromu
     bst_node_t *rootPrt = *tree;
 
@@ -189,6 +210,12 @@ void bst_delete(bst_node_t **tree, char key) {
  * Funkciu implementujte rekurzívne bez použitia vlastných pomocných funkcií.
  */
 void bst_dispose(bst_node_t **tree) {
+
+    // ošetření NULL
+    if (tree == NULL) {
+        return;
+    }
+
     // pokud strom není prázdný
     if (*tree != NULL) {
         // zrušíme levý a pravý podstromy
