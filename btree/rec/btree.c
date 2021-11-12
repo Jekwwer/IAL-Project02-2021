@@ -31,7 +31,25 @@ void bst_init(bst_node_t **tree) {
  * Funkciu implementujte rekurzívne bez použitia vlastných pomocných funkcií.
  */
 bool bst_search(bst_node_t *tree, char key, int *value) {
-    return false;
+
+    // pokud strom je prázdný
+    if (tree == NULL) {
+        return false;
+    }
+    // pokud jsme nalezli uzel s hledaným klíčem
+    else if (tree->key == key) {
+        *value = tree->value;
+        return true;
+    }
+    else {// zatím jsme nenalezli uzel s hledaným klíčem
+        // pokud je klíč vlevo
+        if (key < tree->key) {
+            return (bst_search(tree->left, key, value));
+        }
+        else {// klíč je vpravo
+            return (bst_search(tree->right, key, value));
+        }
+    }
 }
 
 /*
