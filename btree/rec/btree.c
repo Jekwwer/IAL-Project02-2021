@@ -84,7 +84,7 @@ void bst_insert(bst_node_t **tree, char key, int value) {
             *tree = rootPtr;
         }
     }
-    else { // podstrom není prázdný
+    else {// podstrom není prázdný
         // pokud klíč je vlevo
         if (key < rootPtr->key) {
             bst_insert(&rootPtr->left, key, value);
@@ -114,6 +114,17 @@ void bst_insert(bst_node_t **tree, char key, int value) {
  * Funkciu implementujte rekurzívne bez použitia vlastných pomocných funkcií.
  */
 void bst_replace_by_rightmost(bst_node_t *target, bst_node_t **tree) {
+    // současný kořen stromu
+    bst_node_t *rootPrt = *tree;
+    // pokud je cesta vpravo, jdeme doprava
+    if (rootPrt->right != NULL) {
+        bst_replace_by_rightmost(target, &rootPrt->right);
+    }
+    else {// není cesta doprava, aktualizujeme target a odstraňujeme uzel
+        target->key = rootPrt->key;
+        target->value = rootPrt->value;
+        bst_delete(tree, rootPrt->key);
+    }
 }
 
 /*
