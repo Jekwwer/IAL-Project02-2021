@@ -223,6 +223,11 @@ void bst_preorder(bst_node_t *tree) {
  * Funkciu implementujte rekurzívne bez použitia vlastných pomocných funkcií.
  */
 void bst_inorder(bst_node_t *tree) {
+    if (tree != NULL) {
+        bst_inorder(tree->left);
+        bst_print_node(tree);
+        bst_inorder(tree->right);
+    }
 }
 /*
  * Postorder prechod stromom.
