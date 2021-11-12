@@ -208,6 +208,11 @@ void bst_dispose(bst_node_t **tree) {
  * Funkciu implementujte rekurzívne bez použitia vlastných pomocných funkcií.
  */
 void bst_preorder(bst_node_t *tree) {
+    if (tree != NULL) {
+        bst_print_node(tree);
+        bst_preorder(tree->left);
+        bst_preorder(tree->right);
+    }
 }
 
 /*
