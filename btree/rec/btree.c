@@ -140,6 +140,43 @@ void bst_replace_by_rightmost(bst_node_t *target, bst_node_t **tree) {
  * použitia vlastných pomocných funkcií.
  */
 void bst_delete(bst_node_t **tree, char key) {
+    // současný kořen stromu
+    bst_node_t *rootPrt = *tree;
+
+    // pokud strom je prázdný
+    if (*tree == NULL) {
+        return;
+    }
+    // pokud hledaný klíč je vlevo
+    else if (key < rootPrt->key) {
+        bst_delete(&(rootPrt->left), key);
+    }
+    // pokud hledaný klíč je vpravo
+    else if (rootPrt->key < key) {
+        bst_delete(&(rootPrt->right), key);
+    }
+    // pokud jsme našli klíč
+    else {
+        // pokud podstrom nemá potomky
+        if (rootPrt->left == NULL && rootPrt->right == NULL) {
+            *tree = NULL;
+        }
+        // pokud podstrom má pouze pravého potomka
+        else if (rootPrt->right != NULL && rootPrt->left == NULL) {
+            *tree = rootPrt->right;
+        }
+        // pokud podstrom má pouze levého potomka
+        else if (rootPrt->right == NULL && rootPrt->left != NULL) {
+            *tree = rootPrt->left;
+        }
+        // pokud podstrom má oba potomky
+        else {
+            bst_replace_by_rightmost(rootPrt, &((*tree)->left));
+            return;
+        }
+        // uvolňujeme uzel
+        free(rootPrt);
+    }
 }
 
 /*
