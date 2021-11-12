@@ -64,6 +64,40 @@ bool bst_search(bst_node_t *tree, char key, int *value) {
  * Funkciu implementujte rekurzívne bez použitia vlastných pomocných funkcií.
  */
 void bst_insert(bst_node_t **tree, char key, int value) {
+    // současný kořen stromu
+    bst_node_t *rootPtr = *tree;
+
+    // pokud podstrom je prázdný
+    if (rootPtr == NULL) {
+        // alokujeme a inicializujeme ho
+        rootPtr = malloc(sizeof(bst_node_t));
+        if (rootPtr == NULL) {
+            return;
+        }
+        rootPtr->key = key;
+        rootPtr->left = NULL;
+        rootPtr->right = NULL;
+        rootPtr->value = value;
+
+        // pokud celý strom je prázdný
+        if (*tree == NULL) {
+            *tree = rootPtr;
+        }
+    }
+    else { // podstrom není prázdný
+        // pokud klíč je vlevo
+        if (key < rootPtr->key) {
+            bst_insert(&rootPtr->left, key, value);
+        }
+        // pokud klíč je vpravo
+        else if (rootPtr->key < key) {
+            bst_insert(&rootPtr->right, key, value);
+        }
+        // klíče se rovnají
+        else {
+            rootPtr->value = value;
+        }
+    }
 }
 
 /*
