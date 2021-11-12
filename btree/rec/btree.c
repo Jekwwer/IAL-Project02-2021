@@ -237,4 +237,9 @@ void bst_inorder(bst_node_t *tree) {
  * Funkciu implementujte rekurzívne bez použitia vlastných pomocných funkcií.
  */
 void bst_postorder(bst_node_t *tree) {
+    if (tree != NULL) {
+        bst_postorder(tree->left);
+        bst_postorder(tree->right);
+        bst_print_node(tree);
+    }
 }
