@@ -159,6 +159,42 @@ float *ht_get(ht_table_t *table, char *key) {
  * Pri implementácii NEVYUŽÍVAJTE funkciu ht_search.
  */
 void ht_delete(ht_table_t *table, char *key) {
+
+    // ošetření NULL
+    if (table == NULL) {
+        return;
+    }
+
+    // dostaváme index do tabulky
+    int index = get_hash(key);
+    // ukladáme ukazatel do buňky s našim indexem
+    ht_item_t *cellElement = (*table)[index];
+    // ukladáme ukazatel do předchozího prvku buňky
+    ht_item_t *prevCellElement = NULL;
+
+    bool isDeleted = false;
+
+    // dokud prvek není smazan nebo dokud nenalezen (pokud je v tabulce)
+    while (!isDeleted && cellElement != NULL) {
+        // pokud je nalezen
+        if (cellElement->key == key) {
+            // pokud je první v buňce
+            if (prevCellElement == NULL) {
+                // přepisujeme začátek buňky
+                (*table)[index] = cellElement->next;
+            }
+            else {// není první
+                prevCellElement->next = cellElement->next;
+            }
+            // uvojňujeme prvek
+            free(cellElement);
+            // je smazan
+            isDeleted = true;
+        }
+        // odnovujeme ukazatele pro průchod buňkou
+        prevCellElement = cellElement;
+        cellElement = cellElement->next;
+    }
 }
 
 /*
