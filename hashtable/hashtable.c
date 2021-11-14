@@ -204,4 +204,17 @@ void ht_delete(ht_table_t *table, char *key) {
  * inicializácii.
  */
 void ht_delete_all(ht_table_t *table) {
+
+    // ošetření NULL
+    if (table == NULL) {
+        return;
+    }
+
+    // procházíme každou buňkou
+    for (int i = 0; i < MAX_HT_SIZE; i++) {
+        // procházíme každým prvkem buňky a mažeme ho
+        while ((*table)[i] != NULL) {
+            ht_delete(table, (*table)[i]->key);
+        }
+    }
 }
