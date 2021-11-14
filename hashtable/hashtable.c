@@ -32,6 +32,15 @@ int get_hash(char *key) {
  * Inicializácia tabuľky — zavolá sa pred prvým použitím tabuľky.
  */
 void ht_init(ht_table_t *table) {
+
+    // ošetření NULL
+    if (table == NULL) {
+        return;
+    }
+
+    for (int i = 0; i < MAX_HT_SIZE; i++) {
+        (*table)[i] = NULL;
+    }
 }
 
 /*
