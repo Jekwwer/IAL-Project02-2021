@@ -50,6 +50,28 @@ void ht_init(ht_table_t *table) {
  * hodnotu NULL.
  */
 ht_item_t *ht_search(ht_table_t *table, char *key) {
+
+    // ošetření NULL
+    if (table == NULL) {
+        return NULL;
+    }
+
+    // dostaváme index do tabulky
+    int index = get_hash(key);
+    // ukladáme ukazatel do buňky s našim indexem
+    ht_item_t *cellElement = (*table)[index];
+
+    // dokud neprojdeme celou buňku
+    while (cellElement != NULL) {
+        // pokud se klíče rovnají
+        if (cellElement->key == key) {
+            return cellElement;
+        }
+        // procházíme buňkou dál
+        cellElement = cellElement->next;
+    }
+
+    // nic jsme nenašli
     return NULL;
 }
 
