@@ -84,6 +84,44 @@ ht_item_t *ht_search(ht_table_t *table, char *key) {
  * synonym zvoľte najefektívnejšiu možnosť a vložte prvok na začiatok zoznamu.
  */
 void ht_insert(ht_table_t *table, char *key, float value) {
+
+    // ošetření NULL
+    if (table == NULL) {
+        return;
+    }
+
+    // hledáme prvek s tímhle tím klíčem v tabulce
+    ht_item_t *element = ht_search(table, key);
+    // pokud je v tabulce
+    if (element != NULL) {
+        element->value = value;
+    }
+    else {//není v tabulce
+        // alokujeme nový prvek
+        ht_item_t *newElement = malloc(sizeof(ht_item_t));
+        if (newElement == NULL) {
+            return;
+        }
+        newElement->key = key;
+        newElement->value = value;
+        newElement->next = NULL;
+
+        // dostaváme index do tabulky
+        int index = get_hash(key);
+
+        // pokud buňka je prázdná
+        if ((*table)[index] == NULL) {
+            (*table)[index] = newElement;
+        }
+        else {// biňka není prázdná
+            // kopirujeme ukazatel na první položku s buňce
+            ht_item_t *tmp = (*table)[index];
+            // vkládáme položku do buňky jako první
+            (*table)[index] = newElement;
+            // přepisujeme ukazatel na zbytek buňky
+            newElement->next = tmp;
+        }
+    }
 }
 
 /*
