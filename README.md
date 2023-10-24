@@ -1,10 +1,11 @@
 # IAL-Project2-2021
-Řešení 2. domácí úlohy z předmětu IAL v roce 2021/22.<br />
-Solution of the 2nd homework assignment from the subject IAL in 2021/22.<br /> 
+
+Solution of the 2nd homework assignment from the subject IAL(Algorithms) in 2021/22.<br /> 
+Řešení 2. domácí úlohy z předmětu IAL(Algoritmy) v roce 2021/22.<br />
 VUT FIT
 
-## Hodnocení
-| Testovací program |        Test | Získané body |
+## Evaluation
+| Test program      | Test        | Points earned|
 | :---------------- | ----------: | -----------: |
 | hashtable         |      Test 1 |         0.25 |
 | hashtable         |      Test 2 |         0.25 |
@@ -73,4 +74,4 @@ VUT FIT
 | btree-rec         | memcheck-11 |         0.35 |
 | btree-rec         | memcheck-22 |         0.35 |
 
-Celkem bodů **9.75/10** b.
+Total points: **9.75/10**
