@@ -1,10 +1,10 @@
-# IAL-Project2-2021
+# IAL-Project02-2021
 
-Solution of the 2nd homework assignment from the subject IAL(Algorithms) in 2021/22.<br /> 
-Řešení 2. domácí úlohy z předmětu IAL(Algoritmy) v roce 2021/22.<br />
-VUT FIT
+Solution for the 2nd homework assignment from the subject _'IAL (Algorithms)'_ for the academic year 2021/22 at VUT FIT. \
+Řešení 2. domácího úkolu z předmětu _'IAL (Algoritmy)'_ pro akademický rok 2021/22 na VUT FIT.
 
 ## Evaluation
+
 | Test program      | Test        | Points earned|
 | :---------------- | ----------: | -----------: |
 | hashtable         |      Test 1 |         0.25 |
