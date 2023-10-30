@@ -3,6 +3,33 @@
 Solution for the 2nd homework assignment from the subject _'IAL (Algorithms)'_ for the academic year 2021/22 at VUT FIT. \
 Řešení 2. domácího úkolu z předmětu _'IAL (Algoritmy)'_ pro akademický rok 2021/22 na VUT FIT.
 
+## Task: Homework Assignment #2
+
+**Exercises:**
+
+1. **hashtable:** Table with dispersed items. (3 points)
+2. **btree/rec:** Binary search tree with recursive operations. (3.5 points)
+3. **btree/iter:** Binary search tree with iterative operations. (3.5 points)
+
+**Instructions:**
+
+- Complete the function bodies in `hashtable/hashtable.c`, `btree/rec/btree.c`, and `btree/iter/btree.c`.
+- Submit these files through IS FIT as an uncompressed tar archive named after your login (e.g., `xlogin99.tar`), preserving the directory structure.
+- Maintain the UTF-8 encoding for files.
+- **Do not** alter other files or modify the function prototypes.
+
+**Testing:**
+
+- Verify your implementations using the provided testing application.
+- Compilation commands are available: `make test`, `make clean`.
+- The provided tests don't cover everything that will be assessed; hence, thoroughly read the implementation comments and consider writing your own tests.
+
+**Important Notices:**
+
+- Your solution must be compilable and executable on the server `eva`. Non-compliance (e.g., modifying the skeleton, renaming files) will result in zero points.
+- Solutions that are non-compilable or enter infinite loops will be graded zero points; tests have a time limit.
+- Ensure individual work. Plagiarism or unauthorized collaboration may lead to denial of credits and potential disciplinary action.
+
 ## Evaluation
 
 | Test program      | Test        | Points earned|
