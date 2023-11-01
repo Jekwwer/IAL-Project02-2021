@@ -93,3 +93,5 @@ int main(int argc, char *argv[]) {
 
   free(uninitialized_item);
 }
+
+/* End of test.c */

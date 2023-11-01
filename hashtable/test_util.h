@@ -28,3 +28,5 @@ void init_uninitialized_item();
 void init_test_table(ht_table_t **table);
 
 #endif
+
+/* End of test_util.h */

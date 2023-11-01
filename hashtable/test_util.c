@@ -69,3 +69,5 @@ void ht_insert_many(ht_table_t *table, const ht_item_t items[], int count) {
     ht_insert(table, items[i].key, items[i].value);
   }
 }
+
+/* End of test_util.c */
