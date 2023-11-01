@@ -60,3 +60,5 @@ void bst_insert_many(bst_node_t **tree, const char keys[], const int values[],
     bst_insert(tree, keys[i], values[i]);
   }
 }
+
+/* End of btree/test_util.c */

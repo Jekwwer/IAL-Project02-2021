@@ -1,13 +1,13 @@
 /*
- * Implementácia pomocných zásobníkov.
- * Tento súbor neupravujte.
+ * Implementation of auxiliary stacks.
+ * Do not modify this file.
  */
 #include "stack.h"
 #include <stdio.h>
 
 /*
- * Makro generujúce implementáciu funkcií pracujúcich so zásobníkmi.
- * Podrobnejší popis zásobníkov v stack.h.
+ * Macro generating the implementation of functions working with stacks.
+ * A more detailed description of stacks is in stack.h.
  */
 #define STACKDEF(T, TNAME)                                                     \
   void stack_##TNAME##_init(stack_##TNAME##_t *stack) { stack->top = -1; }     \
@@ -41,3 +41,5 @@
 
 STACKDEF(bst_node_t*, bst)
 STACKDEF(bool, bool)
+
+/* End of btree/iter/stack.c */

@@ -1,25 +1,25 @@
 /*
- * Hlavičkový súbor pre pomocné zásobníky.
- * Tento súbor neupravujte.
+ * Header file for auxiliary stacks.
+ * Do not modify this file.
  */
 #ifndef IAL_BTREE_ITER_STACK_H
 #define IAL_BTREE_ITER_STACK_H
 
 #include "../btree.h"
 
-// Maximálna veľkosť zásobníku
+// Maximum stack size
 #define MAXSTACK 30
 
 /*
- * Makro generujúce deklarácie pre zásobník typu T s názvovým infixom TNAME.
- * Pre TNAME="bst" pracujúce s typom T="bst_node_t*":
- *   Dátový typ stack_bst_t
- *   Funkcie void stack_bst_init(stack_bst_t *stack)
+ * Macro generating declarations for a stack of type T with the name infix TNAME.
+ * For TNAME="bst" working with type T="bst_node_t*":
+ *   Data type stack_bst_t
+ *   Functions void stack_bst_init(stack_bst_t *stack)
  *           void stack_bst_push(stack_bst_t *stack, bst_node_t *item)
  *           bst_node_t *stack_bst_pop(stack_bst_t *stack)
  *           bst_node_t *stack_bst_top(stack_bst_t *stack)
  *           bool stack_bst_empty(stack_bst_t *stack)
- * A ekvivalent pre TNAME="bool", T="bool".
+ * And equivalent for TNAME="bool", T="bool".
  */
 #define STACKDEC(T, TNAME)                                                     \
   typedef struct {                                                             \
@@ -37,3 +37,5 @@ STACKDEC(bst_node_t *, bst)
 STACKDEC(bool, bool)
 
 #endif
+
+/* End of btree/iter/stack.h */

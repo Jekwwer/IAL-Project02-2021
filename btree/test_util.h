@@ -21,3 +21,5 @@ void bst_print_tree(bst_node_t *tree);
 void bst_insert_many(bst_node_t **tree, const char keys[], const int values[],
                      int count);
 #endif
+
+/* End of btree/test_util.h */
