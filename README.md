@@ -50,24 +50,24 @@
 
 ## 📊 **Evaluation Results**
 
-| Test              | Points Earned |
-| :---------------- | ------------: |
-|                   |               |
-| _Btree/Iter_:     |               |
-| Test 1-22         |      0.1 each |
-| Test 23-25        |      0.2 each |
-| memcheck-11       |          0.35 |
-| memcheck-22       |          0.35 |
-|                   |               |
-| _Btree/Rec_:      |               |
-| Test 1-22         |      0.1 each |
-| Test 23-25        |      0.2 each |
-| memcheck-11       |          0.35 |
-| memcheck-22       |          0.35 |
-|                   |               |
-| _Hashtables_:     |               |
-| Test 1-11         |     0.25 each |
-| memcheck-11       |           0.0 |
-|                   |               |
-| **Total Points:** |   **9.75/10** |
-|                   |    🟢🟢🟢🟢🟡 |
+| Test              |         Status          | Points Earned |
+| :---------------- | :---------------------: | ------------: |
+|                   |                         |               |
+| _Btree/Iter_:     |                         |               |
+| Test 1-22         |                         |      0.1 each |
+| Test 23-25        |                         |      0.2 each |
+| memcheck-11       |                         |          0.35 |
+| memcheck-22       |                         |          0.35 |
+|                   |                         |               |
+| _Btree/Rec_:      |                         |               |
+| Test 1-22         |                         |      0.1 each |
+| Test 23-25        |                         |      0.2 each |
+| memcheck-11       |                         |          0.35 |
+| memcheck-22       |                         |          0.35 |
+|                   |                         |               |
+| _Hashtables_:     |                         |               |
+| Test 1-11         |                         |     0.25 each |
+| memcheck-11       | _fixed post-evaluation_ |           0.0 |
+|                   |                         |               |
+| **Total Points:** |                         |   **9.75/10** |
+|                   |                         |    🟢🟢🟢🟢🟡 |

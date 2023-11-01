@@ -13,6 +13,24 @@
 
 int HT_SIZE = MAX_HT_SIZE;
 
+/**
+ * @brief Duplicate a string by allocating new memory and copying its content.
+ *
+ * This function creates a new copy of the given string by allocating the necessary 
+ * memory dynamically and then copying the content of the original string to the 
+ * newly allocated space. The caller is responsible for freeing the memory of the 
+ * duplicated string using free().
+ *
+ * @param s Pointer to the original string to be duplicated.
+ * @return Returns a pointer to the duplicated string or NULL if memory allocation fails.
+ */
+char* strdup(const char* s) {
+    char* duplicate = malloc(strlen(s) + 1);  // Allocate memory for the duplicated string
+    if (duplicate == NULL) return NULL;       // Check if allocation succeeded
+    strcpy(duplicate, s);                     // Copy the original string to the new one
+    return duplicate;                         // Return the new string
+}
+
 /*
  * Hash function that assigns a given key an index from the interval
  * <0,HT_SIZE-1>. An ideal hash function would distribute keys
@@ -101,7 +119,11 @@ void ht_insert(ht_table_t *table, char *key, float value) {
         if (newElement == NULL) {
             return;
         }
-        newElement->key = key;
+        newElement->key = strdup(key);
+        if (newElement->key == NULL) {
+            free(newElement);
+            return;
+        }
         newElement->value = value;
         newElement->next = NULL;
 
@@ -203,7 +225,6 @@ void ht_delete(ht_table_t *table, char *key) {
  * reset the table to its post-initialization state.
  */
 void ht_delete_all(ht_table_t *table) {
-
     // Check for NULL
     if (table == NULL) {
         return;
@@ -211,10 +232,16 @@ void ht_delete_all(ht_table_t *table) {
 
     // Looping through each cell
     for (int i = 0; i < MAX_HT_SIZE; i++) {
+        ht_item_t *current = (*table)[i];
         // Looping through each item in the cell and deleting it
-        while ((*table)[i] != NULL) {
-            ht_delete(table, (*table)[i]->key);
+        while (current != NULL) {
+            ht_item_t *nextItem = current->next;
+            free(current->key);
+            free(current);
+            current = nextItem;
         }
+        // Reset the table entry to NULL after deleting all items in the cell
+        (*table)[i] = NULL;
     }
 }
 
