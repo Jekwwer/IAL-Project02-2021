@@ -2,11 +2,11 @@
 
 ### Hashtable & Binary Tree Implementation
 
-> **University**: [VUT FIT](https://www.fit.vut.cz/)
+> 🎓 **University**: [VUT FIT](https://www.fit.vut.cz/)
 >
-> **Course**: [Algorithms (IAL)](https://www.fit.vut.cz/study/course/268213/)
+> 📚 **Course**: [Algorithms (IAL)](https://www.fit.vut.cz/study/course/268213/)
 >
-> **Academic Year**: 2021/22
+> 📅 **Academic Year**: 2021/22
 
 ---
 
